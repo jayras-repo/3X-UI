@@ -68,6 +68,16 @@ sudo ufw allow 2053/tcp
 
 After that you will be able to login to your panel with default credentials (admin/admin) on http://domain.com:2053/
 
+```
+reboot
+```
+
+- Acces 3x-ui panel :
+```
+3x-ui
+---
+  
+
 For full documentation, please visit the [project Wiki](https://github.com/MHSanaei/3x-ui/wiki).
 
 ## A Special Thanks to
