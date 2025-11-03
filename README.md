@@ -73,7 +73,6 @@ docker compose up -d
 sudo ufw allow 2053/tcp
 ```
 
-After that you will be able to login to your panel with default credentials (admin/admin) on http://domain.com:2053/
 
 ```
 reboot
@@ -81,7 +80,7 @@ reboot
 
 - Acces 3x-ui panel :
 ```
-3
+
 x-ui
 ```
   
