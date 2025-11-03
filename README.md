@@ -23,6 +23,10 @@
 As an enhanced fork of the original X-UI project, 3X-UI provides improved stability, broader protocol support, and additional features.
 
 ## Quick Start
+⚠️ Important:
+
+Before proceeding with the installation, make sure your domain is properly pointed to your VPS IP through Cloudflare. The installer will not work correctly if the domain is not connected to the server.
+
 ⚠️ Tips:
 
 Don't forget to replace domain.com with your own domain.
