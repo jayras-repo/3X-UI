@@ -31,59 +31,8 @@ Before proceeding with the installation, make sure your domain is properly point
 
 Don't forget to replace domain.com with your own domain.
 ```
-apt update && apt upgrade -y && ufw allow 80/tcp && ufw allow 443/tcp && git clone https://github.com/MHSanaei/3x-ui.git && cd 3x-ui && chmod +x install.sh && bash install.sh && docker compose up -d && ufw allow 2053/tcp && reboot
+apt update && apt upgrade -y && ufw allow 80/tcp && ufw allow 443/tcp && apt-get install certbot -y && certbot certonly --standalone -d voucherpay.store && certbot renew --dry-run && for d in /etc/letsencrypt/live/*/; do domain=$(basename "$d"); mkdir -p "/root/cert/$domain"; cp -rL "$d"* "/root/cert/$domain/"; chmod 600 "/root/cert/$domain/privkey.pem"; chmod 644 "/root/cert/$domain/"{fullchain.pem,cert.pem,chain.pem,README}; done && git clone https://github.com/MHSanaei/3x-ui.git && cd 3x-ui && chmod +x install.sh && bash install.sh && docker compose up -d && ufw allow 2053/tcp && echo "10" | x-ui
 ```
-
-
-## Install
-- First let us make sure that our firewall has holes for http and https ports:
-```
-sudo ufw allow 80/tcp
-```
-```
-sudo ufw allow 443/tcp
-```
-- Next let’s run certbot to receive a certificate.
-```
-sudo certbot certonly --standalone -d domain.com
-```
-- If you don’t have certbot installed:
-```
-sudo apt-get install certbot -y
-```
-- certbot will do its magic and shortly you will be prompted with paths for your certificate:
-
-Certificate is saved at: 
-- /etc/letsencrypt/live/domain.com/fullchain.pem
-Key is saved at:
-- /etc/letsencrypt/live/domain.com/privkey.pem
-Save these paths as we will need them later.
-```
-sudo certbot renew --dry-run
-```
-```
-git clone https://github.com/MHSanaei/3x-ui.git
-```
-Next in the directory we need to make some adjustments in docker-compose.yml file and add a path to recently created SSL certificates. In order to do it you need to change the original line $PWD/cert/:/root/cert/ to /etc/letsencrypt/:/etc/letsencrypt/:rw.
-
-```
-docker compose up -d
-```
-```
-sudo ufw allow 2053/tcp
-```
-
-
-```
-reboot
-```
-
-- Acces 3x-ui panel :
-```
-
-x-ui
-```
-  
 
 For full documentation, please visit the [project Wiki](https://github.com/MHSanaei/3x-ui/wiki).
 
