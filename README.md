@@ -24,8 +24,21 @@ As an enhanced fork of the original X-UI project, 3X-UI provides improved stabil
 
 ## Quick Start
 
-```bash
-bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+```
+sudo su && \
+apt update && apt upgrade -y && \
+ufw allow 80/tcp && \
+ufw allow 443/tcp && \
+apt-get install certbot -y && \
+certbot certonly --standalone -d domain.com && \
+certbot renew --dry-run && \
+git clone https://github.com/MHSanaei/3x-ui.git && \
+cd 3x-ui && \
+chmod +x install.sh && \
+bash install.sh && \
+docker compose up -d && \
+ufw allow 2053/tcp && \
+reboot
 ```
 
 ## Install
