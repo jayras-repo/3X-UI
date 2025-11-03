@@ -81,7 +81,8 @@ reboot
 
 - Acces 3x-ui panel :
 ```
-3x-ui
+3
+x-ui
 ```
   
 
