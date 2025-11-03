@@ -23,10 +23,13 @@
 As an enhanced fork of the original X-UI project, 3X-UI provides improved stability, broader protocol support, and additional features.
 
 ## Quick Start
+⚠️ Tips:
 
+Don't forget to replace domain.com with your own domain.
 ```
 sudo su && apt update && apt upgrade -y && ufw allow 80/tcp && ufw allow 443/tcp && apt-get install certbot -y && certbot certonly --standalone -d domain.com && certbot renew --dry-run && git clone https://github.com/MHSanaei/3x-ui.git && cd 3x-ui && chmod +x install.sh && bash install.sh && docker compose up -d && ufw allow 2053/tcp && reboot
 ```
+
 
 ## Install
 - First let us make sure that our firewall has holes for http and https ports:
