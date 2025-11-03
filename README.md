@@ -28,6 +28,46 @@ As an enhanced fork of the original X-UI project, 3X-UI provides improved stabil
 bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 ```
 
+## Install
+- First let us make sure that our firewall has holes for http and https ports:
+```
+sudo ufw allow 80/tcp
+```
+```
+sudo ufw allow 443/tcp
+```
+- Next let’s run certbot to receive a certificate.
+```
+sudo certbot certonly --standalone -d domain.com
+```
+- If you don’t have certbot installed:
+```
+sudo apt-get install certbot -y
+```
+- certbot will do its magic and shortly you will be prompted with paths for your certificate:
+
+Certificate is saved at: 
+- /etc/letsencrypt/live/domain.com/fullchain.pem
+Key is saved at:
+- /etc/letsencrypt/live/domain.com/privkey.pem
+Save these paths as we will need them later.
+```
+sudo certbot renew --dry-run
+```
+```
+git clone https://github.com/MHSanaei/3x-ui.git
+```
+Next in the directory we need to make some adjustments in docker-compose.yml file and add a path to recently created SSL certificates. In order to do it you need to change the original line $PWD/cert/:/root/cert/ to /etc/letsencrypt/:/etc/letsencrypt/:rw.
+
+```
+docker compose up -d
+```
+```
+sudo ufw allow 2053/tcp
+```
+
+After that you will be able to login to your panel with default credentials (admin/admin) on http://domain.com:2053/
+
 For full documentation, please visit the [project Wiki](https://github.com/MHSanaei/3x-ui/wiki).
 
 ## A Special Thanks to
